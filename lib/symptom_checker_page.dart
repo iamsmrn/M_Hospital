@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/symptom_field.dart';
 
 void main() {
   runApp(const MyApp());
