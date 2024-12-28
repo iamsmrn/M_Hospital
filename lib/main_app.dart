@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'calendar_page.dart';
 import 'home_page.dart';
 import 'notification_page.dart';
 import 'settings_page.dart';
@@ -16,7 +17,7 @@ class _MainAppState extends State<MainApp> {
 
   static final List<Widget> _pages = [
     const HomePage(),
-    const Placeholder(), // Calendar page placeholder
+    const CalendarPage(),
     const NotificationsPage(),
     const SettingsPage(),
   ];
