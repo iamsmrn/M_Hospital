@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
-
+import 'main_app.dart';
 
 void main() {
   runApp(const MedicalApp());
-
 }
 
 class MedicalApp extends StatelessWidget {
@@ -15,13 +13,10 @@ class MedicalApp extends StatelessWidget {
     return MaterialApp(
       title: 'Medical App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xFF00B894),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const HomePage(),
-
+      home: const MainApp(),
     );
-
-
   }
 }
