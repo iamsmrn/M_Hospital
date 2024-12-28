@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled7/prescription_page.dart';
+
 import 'package:untitled7/xray_reports_page.dart';
 import 'package:untitled7/widgets/report_card.dart';
 import 'clinical_report_page.dart';
@@ -51,15 +51,7 @@ class MedicalReportsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            ReportCard(
-              title: 'Prescriptions',
-              imagePath: 'assets/5841878.png',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => PrecptionPage()),
-              ),
-            ),
+
           ],
         ),
       ),
