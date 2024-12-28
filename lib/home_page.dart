@@ -91,7 +91,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     MenuCard(
-                      title: 'Medicine Store Section',
+                      title: 'Medicine Details',
                       imagePath: 'assets/1354746d12ec0c590c7ee43ad142024a.jpg',
                       onTap: () => Navigator.push(
                         context,

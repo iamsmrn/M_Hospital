@@ -1,80 +1,100 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import '../models/xray_report.dart';
+import '../services/api_service.dart';
 
-class XRayReportsPage extends StatelessWidget {
-  const XRayReportsPage({super.key});
+class XRayReportsScreen extends StatefulWidget {
+  @override
+  _XRayReportsScreenState createState() => _XRayReportsScreenState();
+}
+
+class _XRayReportsScreenState extends State<XRayReportsScreen> {
+  final ApiService _apiService = ApiService();
+  final ImagePicker _picker = ImagePicker();
+  List<XRayReport> reports = [];
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadReports();
+  }
+
+  Future<void> _loadReports() async {
+    setState(() => isLoading = true);
+    try {
+      final data = await _apiService.getReports();
+      setState(() => reports = data);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error loading reports')),
+      );
+    } finally {
+      setState(() => isLoading = false);
+    }
+  }
+
+  Future<void> _uploadImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image == null) return;
+
+    try {
+      await _apiService.uploadReport(image);
+      _loadReports();
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error uploading image')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF00B894)),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          'X-Ray Reports',
-          style: TextStyle(
-            color: Color(0xFF00B894),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: Text('X-Ray Reports'),
+        backgroundColor: Colors.green,
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(16),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : GridView.builder(
+        padding: EdgeInsets.all(16),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
-          childAspectRatio: 1,
         ),
-        itemCount: 4, // Number of X-Ray reports
+        itemCount: reports.length,
         itemBuilder: (context, index) {
-          return XRayReportCard(date: '12/12/24');
+          final report = reports[index];
+          return Card(
+            elevation: 4,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Image.network(
+                    report.imageUrl,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    'Date: ${DateTime.parse(report.date).toLocal().toString().split(' ')[0]}',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
+              ],
+            ),
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add new X-Ray report functionality
-        },
-        backgroundColor: const Color(0xFF00B894),
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
-
-class XRayReportCard extends StatelessWidget {
-  final String date;
-
-  const XRayReportCard({
-    super.key,
-    required this.date,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Text(
-              'Date - $date',
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 12,
-              ),
-            ),
-          ),
-        ],
+        onPressed: _uploadImage,
+        child: Icon(Icons.add),
+        backgroundColor: Colors.green,
       ),
     );
   }

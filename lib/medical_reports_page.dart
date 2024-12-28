@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled7/precption_page.dart';
 import 'package:untitled7/xray_reports_page.dart';
-import '../widgets/report_card.dart';
+import 'package:untitled7/widgets/report_card.dart';
 import 'clinic_report_page.dart';
 
 class MedicalReportsPage extends StatelessWidget {
@@ -35,7 +35,7 @@ class MedicalReportsPage extends StatelessWidget {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const XRayReportsPage(),
+                  builder: (context) =>  XRayReportsScreen(),
                 ),
               ),
             ),
