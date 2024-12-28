@@ -8,7 +8,7 @@ const app = express();
 const port = 3000;
 
 // connect to database
-connectDB("mongodb://localhost:27017/M_Hospital")
+connectDB("mongodb://192.168.56.1:27017/M_Hospital")
   .then(() => {
     console.log("Connected to database");
   })
