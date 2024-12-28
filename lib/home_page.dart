@@ -44,25 +44,17 @@ class HomePage extends StatelessWidget {
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Row(
+              child: const Row(
                 children: [
-                  const Icon(Icons.search),
-                  const SizedBox(width: 8),
-                  const Expanded(
+                  Icon(Icons.search),
+                  SizedBox(width: 8),
+                  Expanded(
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: 'Search',
                         border: InputBorder.none,
                       ),
                     ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.camera_alt),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.mic),
-                    onPressed: () {},
                   ),
                 ],
               ),
