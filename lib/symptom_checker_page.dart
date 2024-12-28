@@ -239,10 +239,10 @@ class _SymptomCheckerPageState extends State<SymptomCheckerPage> {
       appBar: AppBar(
         title: const Text('Symptom Checker'),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            // Handle back navigation
-          },
+          icon: const Icon(Icons.arrow_back,color: Color (0xFF006894)),
+
+          onPressed: () => Navigator.pop(context)
+
         ),
       ),
       body: SingleChildScrollView(
