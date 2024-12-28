@@ -1,25 +1,22 @@
 class XRayReport {
-  final String id;
+  final dynamic id;
   final String imageUrl;
-  final String date;
-  final String? patientId;
-  final String? description;
+  final dynamic date;
+  final dynamic patientId;
 
   XRayReport({
     required this.id,
     required this.imageUrl,
     required this.date,
     this.patientId,
-    this.description,
   });
 
-  factory XRayReport.fromJson(Map<String, dynamic> json) {
+  factory XRayReport.fromJson(Map<dynamic, dynamic> json) {
     return XRayReport(
       id: json['_id'],
       imageUrl: json['imageUrl'],
-      date: json['date'],
+      date: json['dateTaken'],
       patientId: json['patientId'],
-      description: json['description'],
     );
   }
 }

@@ -12,9 +12,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/upload', upload.single('image'), async (req, res) => {
+router.post('/upload', upload.single('file'), async (req, res) => {
   try {
-    const imageUrl = `${req.protocol}:${req.get('host')}/uploads/${req.file.filename}`;
+    const imageUrl = `http:localhost:3000/uploads/${req.file.filename}`;
     const report = new Report({
       imageUrl,
       date: req.body.date || new Date(),

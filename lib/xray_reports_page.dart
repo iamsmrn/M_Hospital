@@ -24,8 +24,10 @@ class _XRayReportsScreenState extends State<XRayReportsScreen> {
     setState(() => isLoading = true);
     try {
       final data = await _apiService.getReports();
+      print("datadata: $data");
       setState(() => reports = data);
     } catch (e) {
+      print("getError: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error loading reports')),
       );
@@ -42,6 +44,7 @@ class _XRayReportsScreenState extends State<XRayReportsScreen> {
       await _apiService.uploadReport(image);
       _loadReports();
     } catch (e) {
+      print("error: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error uploading image')),
       );
