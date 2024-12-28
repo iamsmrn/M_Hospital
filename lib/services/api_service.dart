@@ -4,10 +4,10 @@ import 'package:image_picker/image_picker.dart';
 import '../models/xray_report.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:3000/reports';
+  static const String baseUrl = 'http://localhost:4000/reports';
 
   Future<List<XRayReport>> getReports() async {
-    final response = await http.get(Uri.parse('http://10.0.2.2:3000/reports/xray'));
+    final response = await http.get(Uri.parse('http://10.0.2.2:4000/reports/xray'));
     print(response.body);
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
@@ -19,7 +19,7 @@ class ApiService {
 
   Future<XRayReport> uploadReport(XFile image, {String? patientId}) async {
     var request = http.MultipartRequest(
-        'POST', Uri.parse('http://10.0.2.2:3000/reports/xray'));
+        'POST', Uri.parse('http://10.0.2.2:4000/reports/xray'));
 
     request.files.add(
       await http.MultipartFile.fromPath('file', image.path),

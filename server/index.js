@@ -5,7 +5,7 @@ const reportRouter = require("./routes/reportRoute");
 const cors = require("cors");
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 // connect to database
 connectDB("mongodb://192.168.56.1:27017/M_Hospital")
