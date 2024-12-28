@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     Image.asset('assets/img_2.png', height: 24),
                     const Text(
-                      'Hi Frank!',
+                      'Hi Simran!',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                 ),
                 const CircleAvatar(
                   radius: 20,
-                  backgroundImage: AssetImage('assets/img_3.png'),
+                  backgroundImage: AssetImage('assets/simran.jpg'),
                 ),
               ],
             ),

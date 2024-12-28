@@ -47,18 +47,18 @@ class SettingsPage extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   radius: 50,
-                  backgroundImage: AssetImage('assets/img_3.png'),
+                  backgroundImage: AssetImage('assets/simran.jpg'),
                 ),
                 const SizedBox(height: 16),
                 const Text(
-                  'Frank Lewis',
+                  'Simran Choudhary',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'franklewis79@gmail.com',
+                  'msd.simranchoudhary@gmail.com',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[600],
